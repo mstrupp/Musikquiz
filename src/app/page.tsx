@@ -2,6 +2,7 @@
 
 import React from "react";
 import Counter from "@/components/counter";
+import Confetti from "react-confetti";
 
 export interface Player {
   id: number;
@@ -20,6 +21,7 @@ export default function Home() {
   const [players, setPlayers] = React.useState(initialPlayers);
   const [edit, setEdit] = React.useState(false);
   const [goal, setGoal] = React.useState(30);
+  const [gameOver, setGameOver] = React.useState(false);
 
   React.useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -46,9 +48,8 @@ export default function Home() {
         }
       })
     );
-
     if (player.score >= goal) {
-      console.log(player.name + " hat gewonnen!");
+      setGameOver(true);
     }
   }
 
@@ -63,6 +64,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center bg-gray-950 text-gray-200">
+      {gameOver ? <Confetti /> : <></>}
       <h1 className="py-10 text-4xl font-semibold">Musikquiz</h1>
       <div className="flex space-x-10 items-start">
         {players.map((player) => (
