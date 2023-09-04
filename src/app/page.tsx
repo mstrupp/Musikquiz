@@ -3,14 +3,18 @@
 import React from "react";
 import Counter from "@/components/counter";
 
-export default function Home() {
-  const [players, setPlayers] = React.useState([]);
+export interface Player {
+  id: number
+  name: string
+  score: number
+}
 
-  function handleChangePlayer(nextPlayer: {
-    id: number;
-    name: string;
-    score: number;
-  }) {
+let lastId = 0;
+
+export default function Home() {
+  const [players, setPlayers] = React.useState<Array<Player>>([]);
+
+  function handleChangePlayer(nextPlayer: Player) {
     console.log(nextPlayer);
     setPlayers(
       players.map((player) => {
@@ -23,11 +27,10 @@ export default function Home() {
     );
   }
 
-  let lastId = 0;
   function handleAddPlayer() {
-    let id = lastId + 1;
-    lastId = id;
     setPlayers([...players, { id: lastId, name: "Name", score: 0 }]);
+    console.log(players);
+    lastId += 1;
   }
 
   return (

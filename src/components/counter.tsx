@@ -1,11 +1,12 @@
 import React from "react";
+import {Player} from "../app/page"
 
 export default function Counter({
   player,
   onChangePlayer,
 }: {
-  player: { id: number; name: string; score: number };
-  onChangePlayer: (player: { id: number; name: string; score: number }) => void;
+  player: Player;
+  onChangePlayer: (player: Player) => void;
 }) {
   return (
     <div className="w-28 flex flex-col items-center space-y-6">
