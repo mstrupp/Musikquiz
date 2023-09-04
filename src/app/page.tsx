@@ -21,6 +21,21 @@ export default function Home() {
   const [edit, setEdit] = React.useState(false);
   const [goal, setGoal] = React.useState(30);
 
+  React.useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      let key = Number(event.key);
+      if (isNaN(key)) return;
+      if (key < 1 || key > 9) return;
+      if (key > players.length) return;
+      let player = players[key - 1];
+      handleChangePlayer({ ...player, score: player.score + 1 });
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  });
+
   function handleChangePlayer(player: Player) {
     setPlayers(
       players.map((p) => {
