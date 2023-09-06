@@ -29,7 +29,7 @@ export default function Counter({
 
       <button
         onClick={() => onChangePlayer({ ...player, score: player.score + 1 })}
-        className="w-full bg-blue-300 stroke-blue-900 rounded-lg px-8 active:scale-95 hover:bg-blue-200"
+        className="w-full bg-sky-600 stroke-gray-100 rounded-lg px-8 active:scale-95 hover:bg-sky-500"
       >
         <ChevronUp />
       </button>
@@ -45,7 +45,7 @@ export default function Counter({
 
       <button
         onClick={() => onChangePlayer({ ...player, score: player.score - 1 })}
-        className="w-full bg-blue-300 stroke-blue-900 rounded-lg px-8 active:scale-95 hover:bg-blue-200"
+        className="w-full bg-sky-600 stroke-gray-100 rounded-lg px-8 active:scale-95 hover:bg-sky-500"
       >
         <ChevronDown />
       </button>

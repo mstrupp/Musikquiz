@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply bg-sky-600 stroke-gray-200 active:scale-95 hover:bg-sky-500;
+  }
+}

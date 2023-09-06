@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
-import Counter from "@/components/counter";
 import Confetti from "react-confetti";
+import Counter from "@/components/counter";
+import WinnerText from "@/components/WinnerText";
 
 import Pencil from "@/components/icons/pencil";
 import Plus from "@/components/icons/plus";
@@ -25,6 +26,10 @@ export default function Home() {
   const [edit, setEdit] = React.useState(false);
   const [goal, setGoal] = React.useState(30);
   const [gameOver, setGameOver] = React.useState(false);
+
+  let leader = [...players].sort((p1, p2) => {
+    return p2.score - p1.score;
+  })[0];
 
   React.useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -66,11 +71,11 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-gray-950 text-gray-200">
+    <main className="flex min-h-screen flex-col items-center bg-slate-700 text-gray-200">
       {gameOver ? <Confetti /> : <></>}
-      <h1 className="py-10 text-4xl font-semibold">Musikquiz</h1>
+      <h1 className="py-10 text-5xl font-semibold my-5">Musikquiz</h1>
 
-      <div className="flex space-x-10 items-start">
+      <div className="flex space-x-10 items-start mb-12">
         {players.map((player) => (
           <Counter
             player={player}
@@ -82,8 +87,13 @@ export default function Home() {
           />
         ))}
 
-        <div className="flex flex-col space-y-2 w-6 stroke-gray-200">
-          <button onClick={handleAddPlayer} key={-1} title="Spieler hinzufügen">
+        <div className="flex flex-col space-y-2 w-8">
+          <button
+            className="btn rounded-lg p-1"
+            onClick={handleAddPlayer}
+            key={-1}
+            title="Spieler hinzufügen"
+          >
             <Plus />
           </button>
           <button
@@ -91,13 +101,15 @@ export default function Home() {
               setEdit(!edit);
             }}
             className={
-              "bg-gray-700 stroke-gray-200" + (edit ? " bg-blue-900" : "")
+              "btn rounded-lg p-1" +
+              (edit ? " bg-sky-800 outline-2 border-2" : "")
             }
           >
             <Pencil />
           </button>
         </div>
       </div>
+      {gameOver ? <WinnerText name={leader.name} /> : <></>}
     </main>
   );
 }
