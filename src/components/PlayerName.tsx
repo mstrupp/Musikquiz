@@ -16,12 +16,15 @@ export default function PlayerName({
   return edit ? (
     <div className="flex space-x-2">
       <input
-        className="w-full bg-gray-800 text-center rounded-md text-lg"
+        className="w-full bg-black-light text-center rounded-md text-lg"
         type="text"
         value={player.name}
         onChange={(e) => onChangePlayer({ ...player, name: e.target.value })}
       />
-      <button className="stroke-red-500" onClick={() => onRemovePlayer(player)}>
+      <button
+        className="btn px-1 rounded-md"
+        onClick={() => onRemovePlayer(player)}
+      >
         <XCircle />
       </button>
     </div>

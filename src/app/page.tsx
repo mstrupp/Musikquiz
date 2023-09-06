@@ -72,9 +72,9 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-slate-700 text-gray-200">
+    <main className="flex min-h-screen flex-col items-center bg-black text-white">
       {gameOver ? <Confetti /> : <></>}
-      <h1 className="mt-16 text-5xl font-semibold mb-5">Musikquiz</h1>
+      <h1 className="mt-16 text-5xl font-bold mb-5">Musikquiz</h1>
 
       <Settings goal={goal} setGoal={setGoal} />
 
@@ -105,7 +105,7 @@ export default function Home() {
             }}
             className={
               "btn rounded-lg p-1" +
-              (edit ? " bg-sky-800 outline-2 border-2" : "")
+              (edit ? " bg-primary-light outline-2 border-2" : "")
             }
           >
             <Pencil />

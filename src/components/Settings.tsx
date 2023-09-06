@@ -12,7 +12,7 @@ export default function Settings({
       <p>Ziel:</p>
       <input
         type="range"
-        className="w-16 bg-gray-800 text-center rounded-md text-lg"
+        className="w-16"
         value={goal}
         min={10}
         max={50}

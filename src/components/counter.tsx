@@ -29,7 +29,7 @@ export default function Counter({
 
       <button
         onClick={() => onChangePlayer({ ...player, score: player.score + 1 })}
-        className="w-full bg-sky-600 stroke-gray-100 rounded-lg px-8 active:scale-95 hover:bg-sky-500"
+        className="w-full btn rounded-lg px-8"
       >
         <ChevronUp />
       </button>
@@ -37,7 +37,7 @@ export default function Counter({
       <div
         className={
           "text-4xl font-bold select-none cursor-default" +
-          (winner ? " text-yellow-500" : "")
+          (winner ? " text-secondary" : "")
         }
       >
         {player.score}
@@ -45,7 +45,7 @@ export default function Counter({
 
       <button
         onClick={() => onChangePlayer({ ...player, score: player.score - 1 })}
-        className="w-full bg-sky-600 stroke-gray-100 rounded-lg px-8 active:scale-95 hover:bg-sky-500"
+        className="w-full btn rounded-lg px-8"
       >
         <ChevronDown />
       </button>
