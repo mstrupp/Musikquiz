@@ -4,6 +4,7 @@ import React from "react";
 import Confetti from "react-confetti";
 import Counter from "@/components/counter";
 import WinnerText from "@/components/WinnerText";
+import Settings from "@/components/Settings";
 
 import Pencil from "@/components/icons/pencil";
 import Plus from "@/components/icons/plus";
@@ -73,9 +74,11 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center bg-slate-700 text-gray-200">
       {gameOver ? <Confetti /> : <></>}
-      <h1 className="py-10 text-5xl font-semibold my-5">Musikquiz</h1>
+      <h1 className="mt-16 text-5xl font-semibold mb-5">Musikquiz</h1>
 
-      <div className="flex space-x-10 items-start mb-12">
+      <Settings goal={goal} setGoal={setGoal} />
+
+      <div className="flex space-x-10 items-start mb-12 mt-10">
         {players.map((player) => (
           <Counter
             player={player}
