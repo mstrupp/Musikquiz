@@ -69,6 +69,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center bg-gray-950 text-gray-200">
       {gameOver ? <Confetti /> : <></>}
       <h1 className="py-10 text-4xl font-semibold">Musikquiz</h1>
+
       <div className="flex space-x-10 items-start">
         {players.map((player) => (
           <Counter
@@ -80,6 +81,7 @@ export default function Home() {
             key={player.id}
           />
         ))}
+
         <div className="flex flex-col space-y-2 w-6 stroke-gray-200">
           <button onClick={handleAddPlayer} key={-1} title="Spieler hinzufügen">
             <Plus />
