@@ -1,6 +1,10 @@
 import React from "react";
 import { Player } from "../app/page";
 
+import ChevronDown from "./icons/chevron-down";
+import ChevronUp from "./icons/chevron-up";
+import XCircle from "./icons/x-circle";
+
 export default function Counter({
   player,
   onChangePlayer,
@@ -27,20 +31,7 @@ export default function Counter({
             }
           />
           <button onClick={() => onRemovePlayer(player)}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <XCircle />
           </button>
         </div>
       ) : (
@@ -51,19 +42,7 @@ export default function Counter({
         onClick={() => onChangePlayer({ ...player, score: player.score + 1 })}
         className="w-full bg-blue-300 stroke-blue-900 rounded-lg px-8 active:scale-95 hover:bg-blue-200"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M4.5 15.75l7.5-7.5 7.5 7.5"
-          />
-        </svg>
+        <ChevronUp />
       </button>
       <div
         className={
@@ -77,19 +56,7 @@ export default function Counter({
         onClick={() => onChangePlayer({ ...player, score: player.score - 1 })}
         className="w-full bg-blue-300 stroke-blue-900 rounded-lg px-8 active:scale-95 hover:bg-blue-200"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-          />
-        </svg>
+        <ChevronDown />
       </button>
     </div>
   );
