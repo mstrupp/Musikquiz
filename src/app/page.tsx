@@ -1,8 +1,13 @@
 "use client";
 
 import React from "react";
-import Counter from "@/components/counter";
 import Confetti from "react-confetti";
+import Counter from "@/components/counter";
+import WinnerText from "@/components/WinnerText";
+import Settings from "@/components/Settings";
+
+import Pencil from "@/components/icons/pencil";
+import Plus from "@/components/icons/plus";
 
 export interface Player {
   id: number;
@@ -22,6 +27,10 @@ export default function Home() {
   const [edit, setEdit] = React.useState(false);
   const [goal, setGoal] = React.useState(30);
   const [gameOver, setGameOver] = React.useState(false);
+
+  let leader = [...players].sort((p1, p2) => {
+    return p2.score - p1.score;
+  })[0];
 
   React.useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -63,10 +72,13 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center bg-gray-950 text-gray-200">
+    <main className="flex min-h-screen flex-col items-center bg-black text-white">
       {gameOver ? <Confetti /> : <></>}
-      <h1 className="py-10 text-4xl font-semibold">Musikquiz</h1>
-      <div className="flex space-x-10 items-start">
+      <h1 className="mt-16 text-5xl font-bold mb-5">Musikquiz</h1>
+
+      <Settings goal={goal} setGoal={setGoal} />
+
+      <div className="flex space-x-10 items-start mb-12 mt-10">
         {players.map((player) => (
           <Counter
             player={player}
@@ -77,44 +89,30 @@ export default function Home() {
             key={player.id}
           />
         ))}
-        <div className="flex flex-col space-y-2 w-6 stroke-gray-200">
-          <button onClick={handleAddPlayer} key={-1} title="Spieler hinzufügen">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
+
+        <div className="flex flex-col space-y-2 w-8">
+          <button
+            className="btn rounded-lg p-1"
+            onClick={handleAddPlayer}
+            key={-1}
+            title="Spieler hinzufügen"
+          >
+            <Plus />
           </button>
           <button
             onClick={() => {
               setEdit(!edit);
             }}
             className={
-              "bg-gray-700 stroke-gray-200" + (edit ? " bg-blue-900" : "")
+              "btn rounded-lg p-1" +
+              (edit ? " bg-primary-light outline-2 border-2" : "")
             }
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-              />
-            </svg>
+            <Pencil />
           </button>
         </div>
       </div>
+      {gameOver ? <WinnerText name={leader.name} /> : <></>}
     </main>
   );
 }

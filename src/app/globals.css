@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply bg-primary stroke-white active:scale-95 hover:bg-primary-light;
+  }
+}
